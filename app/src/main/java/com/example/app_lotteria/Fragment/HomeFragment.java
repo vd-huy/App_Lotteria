@@ -11,22 +11,29 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.app_lotteria.Adapter.BestsellerHomeAdapter;
 import com.example.app_lotteria.Adapter.CategoryAdapter;
 import com.example.app_lotteria.Adapter.SliderAdapter;
 import com.example.app_lotteria.Domain.CategoryDomain;
+import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.SliderItems;
 import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.ActivityMainBinding;
 import com.example.app_lotteria.databinding.FragmentHomeBinding;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -76,6 +83,59 @@ public class HomeFragment extends Fragment {
 
         initBanner();
         initCategory();
+        initBestSeller();
+    }
+
+    private void initBestSeller() {
+        DatabaseReference myRef = database.getReference("Items");
+
+        Query query = myRef.orderByChild("categoryID").equalTo(0);
+        binding.progressBarBestSeller.setVisibility(View.VISIBLE);
+        ArrayList<ProductDomain> list = new ArrayList<>();
+
+
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                if (snapshot.exists()){
+                    for (DataSnapshot data:snapshot.getChildren()) {
+                        list.add(data.getValue(ProductDomain.class));
+                    }
+
+                    Toast.makeText(getContext(), ""+ list.size(), Toast.LENGTH_SHORT).show();
+
+                    if (!list.isEmpty()){
+                        binding.recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(getContext(),2));
+
+                        binding.recyclerViewBestSeller.setAdapter(new BestsellerHomeAdapter(list));
+                    }
+
+                    binding.progressBarBestSeller.setVisibility(View.GONE);
+
+//                    for (DataSnapshot data:snapshot.getChildren()) {
+//                        list.add(data.getValue(ProductDomain.class));
+//                    }
+//
+//                    if (!list.isEmpty()){
+//                        binding.recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(getContext(),2));
+//                        binding.recyclerViewBestSeller.setAdapter(new BestsellerHomeAdapter(list));
+//                    }
+//
+//                    binding.progressBarBestSeller.setVisibility(View.GONE);
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getContext(), "Không tìm thấy sản phẩm", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 
     private void initCategory() {

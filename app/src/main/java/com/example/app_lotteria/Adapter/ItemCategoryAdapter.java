@@ -28,16 +28,21 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
     public ItemCategoryAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         ItemCategoryBinding binding = ItemCategoryBinding.inflate(LayoutInflater.from(context), parent, false);
+
+
         return new Viewholder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemCategoryAdapter.Viewholder holder, int position) {
-        holder.binding.titleCategory.setText(list.get(position).getTitle());
+        holder.binding.nameCategory.setText(list.get(position).getTitle());
 
         Glide.with(context)
                 .load(list.get(position).getPicUrl())
-                .into(holder.binding.iconCategory);
+                .into(holder.binding.imageCategory);
+
+
+
     }
 
     @Override

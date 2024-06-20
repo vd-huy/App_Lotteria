@@ -6,12 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.CompositePageTransformer;
-import androidx.viewpager2.widget.MarginPageTransformer;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,12 +19,7 @@ import com.example.app_lotteria.Adapter.SliderAdapter;
 import com.example.app_lotteria.Domain.CategoryDomain;
 import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.SliderItems;
-import com.example.app_lotteria.R;
-import com.example.app_lotteria.databinding.ActivityMainBinding;
 import com.example.app_lotteria.databinding.FragmentHomeBinding;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -102,8 +93,6 @@ public class HomeFragment extends Fragment {
                     for (DataSnapshot data:snapshot.getChildren()) {
                         list.add(data.getValue(ProductDomain.class));
                     }
-
-                    Toast.makeText(getContext(), ""+ list.size(), Toast.LENGTH_SHORT).show();
 
                     if (!list.isEmpty()){
                         binding.recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(getContext(),2));

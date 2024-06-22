@@ -102,16 +102,6 @@ public class HomeFragment extends Fragment {
 
                     binding.progressBarBestSeller.setVisibility(View.GONE);
 
-//                    for (DataSnapshot data:snapshot.getChildren()) {
-//                        list.add(data.getValue(ProductDomain.class));
-//                    }
-//
-//                    if (!list.isEmpty()){
-//                        binding.recyclerViewBestSeller.setLayoutManager(new GridLayoutManager(getContext(),2));
-//                        binding.recyclerViewBestSeller.setAdapter(new BestsellerHomeAdapter(list));
-//                    }
-//
-//                    binding.progressBarBestSeller.setVisibility(View.GONE);
                 }
 
 

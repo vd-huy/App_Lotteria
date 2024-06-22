@@ -4,13 +4,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.app_lotteria.Domain.CategoryDomain;
+import com.example.app_lotteria.Helper.OnItemClickListener;
+import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.ItemCategoryBinding;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -18,9 +22,12 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
 
     ArrayList<CategoryDomain> list;
     private Context context;
+    private OnItemClickListener listener;
+    private int selectedPosition = 0;
 
-    public ItemCategoryAdapter(ArrayList<CategoryDomain> list) {
+    public ItemCategoryAdapter(ArrayList<CategoryDomain> list, OnItemClickListener listener) {
         this.list = list;
+        this.listener = listener;
     }
 
     @NonNull
@@ -41,7 +48,18 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
                 .load(list.get(position).getPicUrl())
                 .into(holder.binding.imageCategory);
 
+        CategoryDomain data = list.get(position);
+        holder.bind(data, position == selectedPosition);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                notifyItemChanged(selectedPosition);
+                selectedPosition = holder.getAdapterPosition();
+                notifyItemChanged(selectedPosition);
+                listener.onItemClick(data,selectedPosition);
+            }
+        });
 
     }
 
@@ -56,6 +74,11 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
         public Viewholder(ItemCategoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+        }
+
+        public void bind(final CategoryDomain data, boolean isSelected) {
+
+            itemView.setBackgroundResource(isSelected ? R.drawable.border : R.color.white);
         }
     }
 

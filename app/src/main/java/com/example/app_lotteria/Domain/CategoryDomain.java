@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
-public class CategoryDomain implements Parcelable {
+public class CategoryDomain implements Serializable {
 
     private String title;
     private int id;
@@ -21,24 +21,6 @@ public class CategoryDomain implements Parcelable {
 
     public CategoryDomain() {
     }
-
-    protected CategoryDomain(Parcel in) {
-        title = in.readString();
-        id = in.readInt();
-        picUrl = in.readString();
-    }
-
-    public static final Creator<CategoryDomain> CREATOR = new Creator<CategoryDomain>() {
-        @Override
-        public CategoryDomain createFromParcel(Parcel in) {
-            return new CategoryDomain(in);
-        }
-
-        @Override
-        public CategoryDomain[] newArray(int size) {
-            return new CategoryDomain[size];
-        }
-    };
 
     public String getTitle() {
         return title;
@@ -64,15 +46,4 @@ public class CategoryDomain implements Parcelable {
         this.picUrl = picUrl;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(@NonNull Parcel parcel, int i) {
-        parcel.writeString(title);
-        parcel.writeInt(id);
-        parcel.writeString(picUrl);
-    }
 }

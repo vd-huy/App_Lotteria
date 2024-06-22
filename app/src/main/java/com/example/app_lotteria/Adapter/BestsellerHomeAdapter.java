@@ -39,23 +39,10 @@ public class BestsellerHomeAdapter extends RecyclerView.Adapter<BestsellerHomeAd
         holder.binding.titleProduct.setText(listProduct.get(position).getTitle());
         holder.binding.priceProduct.setText("Giá : " + listProduct.get(position).getPrice());
 
-        // get image product
-//        RequestOptions options = new RequestOptions();
-//        options = options.transform(new CenterCrop());
-
         Glide.with(context)
                 .load(listProduct.get(position).getPicUrl())
-//                .apply(options)
                 .into(holder.binding.imageProduct);
 
-//        holder.itemView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(context, DetailActivity.class);
-//                intent.putExtra("object",items.get(position));
-//                context.startActivity(intent);
-//            }
-//        });
 
     }
 

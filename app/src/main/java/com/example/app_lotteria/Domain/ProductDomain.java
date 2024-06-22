@@ -7,15 +7,15 @@ public class ProductDomain implements Serializable {
     private String  title;
     private String  description;
     private String picUrl;
-    private double price;
-    private double oldPrice;
+    private int price;
+    private int oldPrice;
 //    private int categoryID;
     private int NumberinCart;
 
     public ProductDomain() {
     }
 
-    public ProductDomain(String title, String description, String picUrl, double price, double oldPrice) {
+    public ProductDomain(String title, String description, String picUrl, int price, int oldPrice) {
         this.title = title;
         this.description = description;
         this.picUrl = picUrl;
@@ -52,7 +52,7 @@ public class ProductDomain implements Serializable {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -60,7 +60,7 @@ public class ProductDomain implements Serializable {
         return oldPrice;
     }
 
-    public void setOldPrice(double oldPrice) {
+    public void setOldPrice(int oldPrice) {
         this.oldPrice = oldPrice;
     }
 

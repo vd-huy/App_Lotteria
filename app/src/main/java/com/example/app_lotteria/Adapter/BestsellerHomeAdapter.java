@@ -17,12 +17,15 @@ import com.example.app_lotteria.Activity.ProductActivity;
 import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.databinding.ViewholderBestsellerBinding;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class BestsellerHomeAdapter extends RecyclerView.Adapter<BestsellerHomeAdapter.Viewholder> {
 
     private ArrayList<ProductDomain> listProduct;
     private Context context;
+
+    DecimalFormat f = new DecimalFormat("#,###");
 
     public BestsellerHomeAdapter(ArrayList<ProductDomain> listProduct) {
         this.listProduct = listProduct;
@@ -39,7 +42,7 @@ public class BestsellerHomeAdapter extends RecyclerView.Adapter<BestsellerHomeAd
     @Override
     public void onBindViewHolder(@NonNull BestsellerHomeAdapter.Viewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.titleProduct.setText(listProduct.get(position).getTitle());
-        holder.binding.priceProduct.setText("Giá : " + listProduct.get(position).getPrice());
+        holder.binding.priceProduct.setText("Giá : " + f.format( listProduct.get(position).getPrice()) + "₫");
 
         Glide.with(context)
                 .load(listProduct.get(position).getPicUrl())

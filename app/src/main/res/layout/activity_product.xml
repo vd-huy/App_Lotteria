@@ -92,6 +92,7 @@
             android:paddingStart="20dp"
             android:lineHeight="20dp"
             android:paddingEnd="20dp"
+            android:maxLines="10"
             android:text="01 Gà rán \n01 FF \n01Pepsi\n01 Sốt Honey (40g) " />
 
         <TextView
@@ -107,7 +108,7 @@
             />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/intro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -166,6 +167,7 @@
             android:text="+" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnAddToCart"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"

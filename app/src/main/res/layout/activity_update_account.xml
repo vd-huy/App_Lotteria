@@ -37,7 +37,7 @@
         />
 
     <EditText
-        android:id="@+id/Name"
+        android:id="@+id/newName"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
@@ -57,7 +57,7 @@
         />
 
     <EditText
-        android:id="@+id/newName"
+        android:id="@+id/newName1"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"

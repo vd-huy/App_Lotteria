@@ -31,7 +31,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class UpdateAccountActivity extends AppCompatActivity {
 
     private View mView;
-    private EditText Name, newName, newPhone;
+    private EditText newName, newName1, newPhone;
     private Button btnUpdateAccount;
     private ProgressDialog progressDialog;
     private ActivityUpdateAccountBinding binding;
@@ -58,12 +58,15 @@ public class UpdateAccountActivity extends AppCompatActivity {
     private void initUser() {
         progressDialog = new ProgressDialog(this);
         newName = binding.newName;
+        newName1 = binding.newName1;
         newPhone = binding.newPhone;
         btnUpdateAccount = binding.btnUpdateAccount;
     }
     private void onClickUpdateAccount() {
         String strNewName = newName.getText().toString().trim();
+        String strNewName1 = newName1.getText().toString().trim();
         String strNewPhone = newPhone.getText().toString().trim();
+
 
         if (TextUtils.isEmpty(strNewName) || TextUtils.isEmpty(strNewPhone)) {
             Toast.makeText(UpdateAccountActivity.this, "All fields are required", Toast.LENGTH_SHORT).show();

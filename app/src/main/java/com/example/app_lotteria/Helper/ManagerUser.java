@@ -7,10 +7,15 @@ import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.User;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+
 public class ManagerUser {
 
     private static final String PREFS_NAME = "MyPrefs";
     private static final String KEY_OBJECT = "User";
+
+    public ManagerUser() {
+    }
 
     public static void saveObject(Context context, User user) {
         SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -33,5 +38,6 @@ public class ManagerUser {
 
         Gson gson = new Gson();
         return gson.fromJson(json, User.class);
+
     }
 }

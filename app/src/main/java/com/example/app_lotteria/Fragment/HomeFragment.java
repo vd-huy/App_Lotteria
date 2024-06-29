@@ -1,5 +1,7 @@
 package com.example.app_lotteria.Fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,12 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.example.app_lotteria.Activity.LocationActivity;
 import com.example.app_lotteria.Adapter.BestsellerHomeAdapter;
 import com.example.app_lotteria.Adapter.CategoryAdapter;
 import com.example.app_lotteria.Adapter.SliderAdapter;
 import com.example.app_lotteria.Domain.CategoryDomain;
 import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.SliderItems;
+import com.example.app_lotteria.Helper.TinyDB;
 import com.example.app_lotteria.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,6 +38,8 @@ public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+    private TinyDB tinyDB;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -58,23 +64,33 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        binding.locationBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Toast.makeText(getActivity(), "Your Text Here!", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        binding.locationBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getContext(), LocationActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        getAddressExits();
         initBanner();
         initCategory();
         initBestSeller();
+    }
+
+    public void getAddressExits(){
+        tinyDB = new TinyDB(getContext());
+        if (!tinyDB.getString("address").isEmpty()){
+            binding.locationTxt.setText(tinyDB.getString("address"));
+        }else {
+            binding.locationTxt.setText("nhập địa chỉ");
+        }
     }
 
     private void initBestSeller() {

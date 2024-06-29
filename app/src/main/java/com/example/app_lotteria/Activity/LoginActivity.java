@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.User;
 import com.example.app_lotteria.Helper.ManagerUser;
+import com.example.app_lotteria.Helper.ManagmentCart;
+import com.example.app_lotteria.Helper.TinyDB;
 import com.example.app_lotteria.databinding.ActivityLoginBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,11 +30,19 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
+    private TinyDB tinyDB;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        tinyDB = new TinyDB(this);
+        tinyDB.remove("User");
+        tinyDB.remove("CartList");
+
+
 
         binding.btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,8 +71,9 @@ public class LoginActivity extends AppCompatActivity {
                                 String pass = snapshot.child(userName).child("password").getValue(String.class);
 
                                 if (pass.equals(password)){
-                                    User user = snapshot.getValue(User.class);
-                                    ManagerUser.saveObject(LoginActivity.this,user);
+                                    User user = snapshot.child(userName).getValue(User.class);
+//                                    ManagerUser.saveObject(LoginActivity.this,user);
+                                    tinyDB.putObject("User",user);
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                     startActivity(intent);

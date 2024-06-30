@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name= "primaryColor">#FAE1E1</color>
     <color name= "secondaryColor">#FF5B6A</color>
+    <color name="backgruondaccount">#FAE1E1</color>
 
 </resources>
 

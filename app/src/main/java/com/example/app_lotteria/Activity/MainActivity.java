@@ -1,21 +1,21 @@
 package com.example.app_lotteria.Activity;
 
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
+
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
+
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 
 import com.example.app_lotteria.Adapter.ViewPagerAdapter;
 import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.ActivityMainBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,12 +28,19 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.cartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         binding.viewPager2.setAdapter(adapter);
 
         //disable swiping in ViewPager2
         binding.viewPager2.setUserInputEnabled(false);
-
 
         // set text and icon tablayout
 

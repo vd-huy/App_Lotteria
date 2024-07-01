@@ -13,11 +13,11 @@
         android:theme="@style/Theme.App_Lotteria"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.HistoryOrderActivity"
+            android:name=".Activity.ChangePasswordUserActivity"
             android:exported="false" />
         <activity
-            android:name=".Fragment.UpdateAccountActivity"
-            android:exported="true" />
+            android:name=".Activity.HistoryOrderActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.CartActivity"
             android:exported="false" />

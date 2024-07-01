@@ -11,11 +11,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.app_lotteria.Activity.ChangePasswordActivity;
+import com.example.app_lotteria.Activity.ChangePasswordUserActivity;
+import com.example.app_lotteria.Activity.HistoryOrderActivity;
 import com.example.app_lotteria.Activity.LoginActivity;
 import com.example.app_lotteria.Helper.TinyDB;
-import com.example.app_lotteria.R;
-import com.example.app_lotteria.databinding.FragmentHomeBinding;
 import com.example.app_lotteria.databinding.FragmentUserBinding;
 
 public class UserFragment extends Fragment {
@@ -49,8 +48,15 @@ public class UserFragment extends Fragment {
         binding.changePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                Intent intent = new Intent(getContext(), ChangePasswordUserActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        binding.historyOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), HistoryOrderActivity.class));
             }
         });
 

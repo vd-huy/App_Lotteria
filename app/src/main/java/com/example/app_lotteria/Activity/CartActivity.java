@@ -59,7 +59,7 @@ public class CartActivity extends AppCompatActivity {
 
         user = tinyDB.getObject("User", User.class);
 
-        String pattern = "HH:mm dd/MM/yyyy";
+        String pattern = "HH:mm, dd/MM/yyyy";
         simpleDateFormat = new SimpleDateFormat(pattern);
 
         if (user == null) {

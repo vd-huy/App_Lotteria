@@ -29,6 +29,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class CartActivity extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class CartActivity extends AppCompatActivity {
 
     private User user;
 
+    SimpleDateFormat simpleDateFormat;
+
     DecimalFormat f = new DecimalFormat("#,###");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,9 @@ public class CartActivity extends AppCompatActivity {
         tinyDB = new TinyDB(this);
 
         user = tinyDB.getObject("User", User.class);
+
+        String pattern = "HH:mm dd/MM/yyyy";
+        simpleDateFormat = new SimpleDateFormat(pattern);
 
         if (user == null) {
             startActivity(new Intent(CartActivity.this,LoginActivity.class));
@@ -97,7 +106,8 @@ public class CartActivity extends AppCompatActivity {
                 .setTitle("Xác nhận thông tin")
                 .setPositiveButton("Xác nhận", (dialog, which) -> {
                     DatabaseReference myRef = database.getReference();
-                    OrderDomain order = new OrderDomain(user.getUserName(),tinyDB.getString("name"),managmentCart.getListCart(),managmentCart.getTotalFee(),"Đang giao", tinyDB.getString("address"), tinyDB.getString("phone"));
+
+                    OrderDomain order = new OrderDomain(user.getUserName(),tinyDB.getString("name"),managmentCart.getListCart(),managmentCart.getTotalFee(),"Đang giao", tinyDB.getString("address"), tinyDB.getString("phone"),String.valueOf(simpleDateFormat.format(new Date())));
 
                     myRef.child("Orders").child(user.getUserName()).child(String.valueOf(order.getIdOrder())).setValue(order);
                     Toast.makeText(CartActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();

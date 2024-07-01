@@ -12,6 +12,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.app_lotteria.Domain.User;
+import com.example.app_lotteria.Helper.TinyDB;
 import com.example.app_lotteria.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -26,20 +28,24 @@ public class ChangePasswordActivity extends AppCompatActivity {
     private EditText edtpassword, edtnewPassword, edtconfirmNewPassword;
     private Button btnChangePassword;
     private DatabaseReference usersRef;
-    private String username = "USER_name";
     String stPassword , stNewPassword, stConfirmNewPassword;
+
+    private TinyDB tinyDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.capnhatmatkhau);
 
+        tinyDB = new TinyDB(this);
+
         edtpassword = (EditText) findViewById(R.id.Password);
         edtnewPassword = (EditText) findViewById(R.id.Passwordnew);
         edtconfirmNewPassword = (EditText) findViewById(R.id.confirmPasswordnew);
         btnChangePassword = (Button) findViewById(R.id.btnCapnhatmatkhau);
 
-        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child("Trang");
+
+        usersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(tinyDB.getObject("User", User.class).getUserName());
 
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override

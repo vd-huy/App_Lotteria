@@ -3,6 +3,7 @@ package com.example.app_lotteria.Domain;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class OrderDomain {
 
@@ -14,11 +15,12 @@ public class OrderDomain {
     private String address;
     private String phoneNumber;
     private int total;
+    private String timeOrder;
 
     public OrderDomain() {
     }
 
-    public OrderDomain( String userName, String name, ArrayList<ProductDomain> listProduct,int total, String status, String address, String phoneNumber) {
+    public OrderDomain( String userName, String name, ArrayList<ProductDomain> listProduct,int total, String status, String address, String phoneNumber, String timeOrder) {
         this.idOrder = String.valueOf(System.currentTimeMillis());
         this.userName = userName;
         this.name = name;
@@ -27,6 +29,7 @@ public class OrderDomain {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.total = total;
+        this.timeOrder = timeOrder;
     }
 
     public String getIdOrder() {
@@ -91,5 +94,13 @@ public class OrderDomain {
 
     public void setTotal(int total) {
         this.total = total;
+    }
+
+    public String getTimeOrder() {
+        return timeOrder;
+    }
+
+    public void setTimeOrder(String timeOrder) {
+        this.timeOrder = timeOrder;
     }
 }

@@ -50,7 +50,7 @@ public class RegisterActivity extends AppCompatActivity {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.hasChild(userName)){
-                                Toast.makeText(RegisterActivity.this, "email đã được đăng ký", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(RegisterActivity.this, "userName đã được tồn tại", Toast.LENGTH_SHORT).show();
                             }else {
                                 // sending data to firebase
 //                                myRef.child("users").child(userName).child("fullname").setValue(user.getFullName());

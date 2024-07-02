@@ -1,7 +1,9 @@
 package com.example.app_lotteria.Adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -18,6 +20,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
     ArrayList<CategoryDomain> items;
     private Context context;
 
+
     public CategoryAdapter(ArrayList<CategoryDomain> items) {
         this.items = items;
     }
@@ -31,12 +34,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Viewho
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryAdapter.Viewholder holder, int position) {
+    public void onBindViewHolder(@NonNull CategoryAdapter.Viewholder holder, @SuppressLint("RecyclerView") int position) {
         holder.binding.titleCategory.setText(items.get(position).getTitle());
 
         Glide.with(context)
                 .load(items.get(position).getPicUrl())
                 .into(holder.binding.iconCategory);
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

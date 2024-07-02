@@ -107,7 +107,7 @@ public class CartActivity extends AppCompatActivity {
                 .setPositiveButton("Xác nhận", (dialog, which) -> {
                     DatabaseReference myRef = database.getReference();
 
-                    OrderDomain order = new OrderDomain(user.getUserName(),tinyDB.getString("name"),managmentCart.getListCart(),managmentCart.getTotalFee(),"Đang giao", tinyDB.getString("address"), tinyDB.getString("phone"),String.valueOf(simpleDateFormat.format(new Date())));
+                    OrderDomain order = new OrderDomain(user.getUserName(),tinyDB.getString("name"),managmentCart.getListCart(),managmentCart.getTotalFee(),"Đã đặt hàng", tinyDB.getString("address"), tinyDB.getString("phone"),String.valueOf(simpleDateFormat.format(new Date())));
 
                     myRef.child("Orders").child(user.getUserName()).child(String.valueOf(order.getIdOrder())).setValue(order);
                     Toast.makeText(CartActivity.this, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();

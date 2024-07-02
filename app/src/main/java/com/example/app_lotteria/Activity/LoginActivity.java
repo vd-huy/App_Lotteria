@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         tinyDB = new TinyDB(this);
         tinyDB.remove("User");
         tinyDB.remove("CartList");
+        tinyDB.remove("role");
 
 
 
@@ -72,8 +74,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (pass.equals(password)){
                                     User user = snapshot.child(userName).getValue(User.class);
-//                                    ManagerUser.saveObject(LoginActivity.this,user);
                                     tinyDB.putObject("User",user);
+                                    tinyDB.putString("role",user.getRole());
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                                     startActivity(intent);

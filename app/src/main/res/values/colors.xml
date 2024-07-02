@@ -7,8 +7,10 @@
     <color name="backgruondaccount">#FAE1E1</color>
     <color name="orderSuccess">#A3FAA3</color>
     <color name="textOrderSuccess">#429942</color>
-    <color name="orderFail">#FDA1B5</color>
-    <color name="textOrderFail">#000</color>
+    <color name="ordered">#FDA1B5</color>
+    <color name="textOrdered">#000</color>
+    <color name="orderFail">#00C0FF</color>
+    <color name="textOrderFail">#99FBFF</color>
     <color name="orderDelivering">#ffcb00</color>
     <color name="textOrderDelivering">#d51913</color>
 

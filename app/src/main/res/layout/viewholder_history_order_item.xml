@@ -29,8 +29,8 @@
             android:layout_height="wrap_content"
             android:textSize="10sp"
             android:text="Giao thành công"
-            android:textColor="@color/textOrderDelivering"
-            android:background="@drawable/order_delivering"
+            android:textColor="@color/textOrderFail"
+            android:background="@drawable/order_fail"
             android:padding="8dp"
             android:gravity="end"/>
     </LinearLayout>
@@ -51,6 +51,16 @@
             android:layout_marginBottom="10dp"
             android:text="#1234" />
 
+        <TextView
+            android:id="@+id/orderUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_delivery"
+            android:textSize="10sp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:text="Người nhận : huy"
+            android:layout_marginBottom="5dp"/>
 
 
         <TextView
@@ -58,16 +68,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/baseline_location_on_24"
-            android:textSize="12sp"
+            android:drawablePadding="5dp"
+            android:textSize="10sp"
             android:gravity="center"
-            android:text="Giao đến : 885 tam trinh, yên sở, hoàng mai, hà nội"/>
+            android:text="Giao đến : 885 tam trinh, yên sở, hoàng mai, hà nội"
+            android:layout_marginBottom="5dp"/>
 
         <TextView
             android:id="@+id/orderPrice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableLeft="@drawable/ic_money"
-            android:textSize="12sp"
+            android:drawablePadding="5dp"
+            android:textSize="10sp"
             android:gravity="center"
             android:text="Thành tiền : 88.000đ"/>
 

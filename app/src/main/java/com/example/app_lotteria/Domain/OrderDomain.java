@@ -1,11 +1,12 @@
 package com.example.app_lotteria.Domain;
 
 
+import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class OrderDomain {
+public class OrderDomain implements Serializable {
 
     private String idOrder;
     private String userName;

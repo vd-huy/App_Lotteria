@@ -1,5 +1,6 @@
 package com.example.app_lotteria.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.app_lotteria.Adapter.OrderHistoryAdapter;
 import com.example.app_lotteria.Domain.CategoryDomain;
 import com.example.app_lotteria.Domain.OrderDomain;
 import com.example.app_lotteria.Domain.User;
+import com.example.app_lotteria.Fragment.UserFragment;
 import com.example.app_lotteria.Helper.TinyDB;
 import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.ActivityHistoryOrderBinding;
@@ -55,7 +57,8 @@ public class HistoryOrderActivity extends AppCompatActivity {
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(HistoryOrderActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -90,14 +93,47 @@ public class HistoryOrderActivity extends AppCompatActivity {
 
                     }
                 });
+
+
                 break;
             case "admin":
-                myRef.child("Orders").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                myRef.child("Orders").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+
+                            String key = dataSnapshot.getKey();
+                            myRef.child("Orders").child(key).addListenerForSingleValueEvent(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot data:snapshot.getChildren()) {
+                                        list.add(data.getValue(OrderDomain.class));
+                                    }
+
+                                    if (!list.isEmpty()){
+                                        binding.recyclerViewOrder.setLayoutManager(new LinearLayoutManager(HistoryOrderActivity.this,LinearLayoutManager.VERTICAL,false));
+                                        binding.recyclerViewOrder.setAdapter(new OrderHistoryAdapter(list));
+                                    }
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
                     }
                 });
+                break;
+
+            default:
                 break;
         }
 

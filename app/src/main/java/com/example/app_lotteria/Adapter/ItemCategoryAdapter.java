@@ -35,8 +35,6 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
     public ItemCategoryAdapter.Viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         ItemCategoryBinding binding = ItemCategoryBinding.inflate(LayoutInflater.from(context), parent, false);
-
-
         return new Viewholder(binding);
     }
 

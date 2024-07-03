@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.example.app_lotteria.Adapter.BestsellerHomeAdapter;
 import com.example.app_lotteria.Adapter.ItemCategoryAdapter;
 import com.example.app_lotteria.Domain.CategoryDomain;
 import com.example.app_lotteria.Domain.ProductDomain;
+import com.example.app_lotteria.Helper.OnClickSendPosition;
 import com.example.app_lotteria.Helper.OnItemClickListener;
 import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.FragmentOrderBinding;
@@ -30,11 +32,13 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 
-public class OrderFragment extends Fragment implements OnItemClickListener{
+public class OrderFragment extends Fragment implements OnItemClickListener {
 
     private FragmentOrderBinding binding;
     ArrayList<CategoryDomain>  listCategory;
     ItemCategoryAdapter adapter;
+
+    private int selectedPosition = 0;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -180,4 +184,6 @@ public class OrderFragment extends Fragment implements OnItemClickListener{
             }
         });
     }
+
+
 }

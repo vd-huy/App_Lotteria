@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.app_lotteria.Domain.CategoryDomain;
+import com.example.app_lotteria.Helper.OnClickSendPosition;
 import com.example.app_lotteria.Helper.OnItemClickListener;
 import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.ItemCategoryBinding;
@@ -40,6 +41,7 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ItemCategoryAdapter.Viewholder holder, int position) {
+
         holder.binding.nameCategory.setText(list.get(position).getTitle());
 
         Glide.with(context)
@@ -65,6 +67,7 @@ public class ItemCategoryAdapter extends RecyclerView.Adapter<ItemCategoryAdapte
     public int getItemCount() {
         return list.size();
     }
+
 
     public class Viewholder extends RecyclerView.ViewHolder {
         ItemCategoryBinding binding;

@@ -42,6 +42,7 @@ public class OrderHistoryAdapter extends RecyclerView.Adapter<OrderHistoryAdapte
     @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull OrderHistoryAdapter.Viewholder holder, @SuppressLint("RecyclerView") int position) {
+
         holder.binding.idOrder.setText("#"+items.get(position).getIdOrder());
         holder.binding.txtTimeOrder.setText(items.get(position).getTimeOrder());
 

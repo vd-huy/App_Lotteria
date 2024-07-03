@@ -54,6 +54,7 @@ public class HistoryOrderActivity extends AppCompatActivity {
 
         initHistoryOrder();
 
+
         binding.btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -83,8 +84,11 @@ public class HistoryOrderActivity extends AppCompatActivity {
                         }
 
                         if (!list.isEmpty()){
+                            binding.noProduct.setVisibility(View.GONE);
                             binding.recyclerViewOrder.setLayoutManager(new LinearLayoutManager(HistoryOrderActivity.this,LinearLayoutManager.VERTICAL,false));
                             binding.recyclerViewOrder.setAdapter(new OrderHistoryAdapter(list));
+                        }else {
+                            binding.noProduct.setVisibility(View.VISIBLE);
                         }
                     }
 
@@ -111,8 +115,11 @@ public class HistoryOrderActivity extends AppCompatActivity {
                                     }
 
                                     if (!list.isEmpty()){
+                                        binding.noProduct.setVisibility(View.GONE);
                                         binding.recyclerViewOrder.setLayoutManager(new LinearLayoutManager(HistoryOrderActivity.this,LinearLayoutManager.VERTICAL,false));
                                         binding.recyclerViewOrder.setAdapter(new OrderHistoryAdapter(list));
+                                    }else{
+                                        binding.noProduct.setVisibility(View.VISIBLE);
                                     }
                                 }
 

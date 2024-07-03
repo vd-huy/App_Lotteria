@@ -23,6 +23,7 @@ import com.example.app_lotteria.Domain.CategoryDomain;
 import com.example.app_lotteria.Domain.ProductDomain;
 import com.example.app_lotteria.Domain.SliderItems;
 import com.example.app_lotteria.Helper.TinyDB;
+import com.example.app_lotteria.R;
 import com.example.app_lotteria.databinding.FragmentHomeBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -149,7 +150,7 @@ public class HomeFragment extends Fragment {
                     if (!list.isEmpty()){
                         binding.recyclerViewCategory.setLayoutManager(new GridLayoutManager(getContext(),2));
 
-                        binding.recyclerViewCategory.setAdapter(new CategoryAdapter(list));
+                        binding.recyclerViewCategory.setAdapter(new CategoryAdapter(list,getActivity().findViewById(R.id.viewPager2) ));
 
                     }
 

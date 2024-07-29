@@ -38,6 +38,12 @@
             android:exported="false" />
         <activity
             android:name=".Activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.BaiThiUpload"
+            android:exported="false" />
+        <activity
+            android:name=".Activity.BaiThiShowList"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

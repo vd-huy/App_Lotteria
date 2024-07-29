@@ -21,10 +21,10 @@ public class ManagmentCart {
         ArrayList<ProductDomain> listfood = getListCart();
         boolean existAlready = false;
         int n = 0;
-        for (int y = 0; y < listfood.size(); y++) {
-            if (listfood.get(y).getTitle().equals(item.getTitle())) {
+        for (int i = 0; i < listfood.size(); i++) {
+            if (listfood.get(i).getTitle().equals(item.getTitle())) {
                 existAlready = true;
-                n = y;
+                n = i;
                 break;
             }
         }
@@ -34,7 +34,7 @@ public class ManagmentCart {
             listfood.add(item);
         }
         tinyDB.putListObject("CartList", listfood);
-        Toast.makeText(context, "Added to your Cart", Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Thêm vào giỏ hàng thành công", Toast.LENGTH_SHORT).show();
     }
 
     public ArrayList<ProductDomain> getListCart() {

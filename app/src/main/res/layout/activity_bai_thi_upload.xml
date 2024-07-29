@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.BaiThiUpload">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="Upload"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp">
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:layout_gravity="center"
+            android:visibility="invisible"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:ems="10"
+                android:layout_marginBottom="10dp"
+                android:inputType="text"
+                android:background="@drawable/border"
+                android:hint="Enter Name" />
+
+            <EditText
+                android:id="@+id/editTextChucVu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:ems="10"
+                android:inputType="text"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="Enter Chuc Vu" />
+
+            <EditText
+                android:id="@+id/editTextHSL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:ems="10"
+                android:inputType="number"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/border"
+                android:hint="Enter He So Luong" />
+
+            <EditText
+                android:id="@+id/editTextLuongCoBan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/border"
+                android:ems="10"
+                android:inputType="text"
+                android:layout_marginBottom="10dp"
+                android:hint="Enter Luong Co Ban" />
+
+            <EditText
+                android:id="@+id/editTextPhuCap"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:background="@drawable/border"
+                android:ems="10"
+                android:inputType="text"
+                android:layout_marginBottom="10dp"
+                android:hint="Enter Phu Cap Chuc Vu" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnUpload"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:text="Upload"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:background="@color/secondaryColor"
+                />
+
+
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
